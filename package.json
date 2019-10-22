@@ -14,7 +14,7 @@
     "test": "echo \"tests complete\""
   },
   "author": "Cody Van De Mark",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
@@ -31,5 +31,13 @@
     "express-handlebars": "^3.1.0",
     "mongoose": "^5.7.5",
     "serve-favicon": "^2.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Llynch1998/simple-mvc-example-done.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Llynch1998/simple-mvc-example-done/issues"
+  },
+  "homepage": "https://github.com/Llynch1998/simple-mvc-example-done#readme"
 }
