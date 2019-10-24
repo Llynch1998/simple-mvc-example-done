@@ -4,7 +4,7 @@ mongoose.Promise = global.Promise;
 
 let DogModel = {};
 
-const DogSchema = new mongoose.Schema({
+const DogSchema = new mongoose.Schema({//this defines data structure
     name: {
       type: String,
       required: true,
@@ -35,7 +35,7 @@ const DogSchema = new mongoose.Schema({
       name,
     };
   
-    return DogModel.findOne(search, callback);
+    return DogModel.findOne(search, callback);// find one is  abuilt in function
   };
 
   DogModel = mongoose.model('Dog', DogSchema);
