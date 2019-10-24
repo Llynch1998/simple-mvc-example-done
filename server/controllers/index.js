@@ -187,9 +187,27 @@ const setName = (req, res) => {
   return res;
 };
 const setDog = (req, res) =>{
-  if(!req.body.name || !req.body.breed || !reqq.body.age){
+  if(!req.body.name || !req.body.breed || !req.body.age){
     return res.status(400).json({ error: 'Please fill in all fields' });//continue here
   }
+  const name = `${req.body.name}`;
+  const breed = `${req.body.breed}`;
+  const age = `${req.body.age}`;
+
+  const newDog = {
+    name,
+    breed,
+    age,
+  }
+
+  const savePromise = newDog.save();
+  savePromise.then(() =>{
+    lastDog = newDog;
+    res.json({name: lastDog.name, breed: lastDog.breed, age: lastDog.age});
+  });
+  savePromise.catch((err) => res.json({ err }));
+
+  return res;
 }
 
 
@@ -258,6 +276,16 @@ const updateLast = (req, res) => {
   savePromise.catch((err) => res.json({ err }));
 };
 
+const updateDog = (req, res) =>{
+lastDog.age++;
+
+const savePromise = lastDog.save();
+
+savePromise.then(() => res.json({name: lastDog.name, breed: lastDog.breed, age: lastDog.age}));
+
+savePromise.catch((err) => res.json({ err }));
+}
+
 // function to handle a request to any non-real resources (404)
 // controller functions in Express receive the full HTTP request
 // and get a pre-filled out response object to send
@@ -282,7 +310,9 @@ module.exports = {
   readCat,
   getName,
   setName,
+  setDog,
   updateLast,
+  updateDog,
   searchName,
   notFound,
 };
