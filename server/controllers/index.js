@@ -87,6 +87,7 @@ const readDog = (req, res) =>{
 
       return res.json(doc);
     }
+    Dog.findByName(name2, callback);
 }
 
 // function to handle requests to the page1 page
@@ -133,6 +134,10 @@ const hostPage3 = (req, res) => {
   res.render('page3');
 };
 
+const hostPage4 = (req, res) => {
+  
+res.render('page4');
+};
 // function to handle get request to send the name
 // controller functions in Express receive the full HTTP request
 // and a pre-filled out response object to send
@@ -142,6 +147,10 @@ const getName = (req, res) => {
   // you can't send any more data to this user until the next response
   res.json({ name: lastAdded.name });
 };
+
+const getDog = (req, res) =>{
+  res.json({name: lastDog.name});
+}
 
 // function to handle a request to set the name
 // controller functions in Express receive the full HTTP request
@@ -194,11 +203,13 @@ const setDog = (req, res) =>{
   const breed = `${req.body.breed}`;
   const age = `${req.body.age}`;
 
-  const newDog = {
+  const dogData = {
     name,
     breed,
     age,
-  }
+  };
+
+  const newDog = new Dog(dogData);
 
   const savePromise = newDog.save();
   savePromise.then(() =>{
@@ -307,8 +318,11 @@ module.exports = {
   page1: hostPage1,
   page2: hostPage2,
   page3: hostPage3,
+  page4: hostPage4,
   readCat,
+  readDog,
   getName,
+  getDog,
   setName,
   setDog,
   updateLast,
